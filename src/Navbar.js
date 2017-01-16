@@ -16,10 +16,10 @@ class Navbar extends Component {
 					</div>
 					<ul className="nav navbar-nav">
 						<li className="active">
-                            <Link to="/">Home</Link>
+                            <Link to="/">Now Playing</Link>
                         </li>
-						<li><Link to="/nowPlaying">Page 1</Link></li>
-						<li><Link to="/topRated">Page 2</Link></li>
+						<li><Link to="/upComing">Up Coming</Link></li>
+						<li><Link to="/topRated">Top Rated</Link></li>
 					</ul>
 				</div>
 			</nav>
