@@ -3,8 +3,7 @@ import { Link } from 'react-router';
 import Constants from './Constants';
 
 // CSS
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import './css/Poster.css';
+import './css/styles.css';
 
 class Poster extends Component {
 
@@ -13,7 +12,7 @@ class Poster extends Component {
         var posterLink = `/movie/${this.props.poster.id}`;
         return(
             <div className='poster'>
-                <Link to={posterLink}><img className='results-poster' src={imgPath} role="presentation"/></Link>
+                <Link to={posterLink}><img src={imgPath} role="presentation"/></Link>
                 <div className='poster-content'>
 
                 </div>

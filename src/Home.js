@@ -5,7 +5,7 @@ import DiscoverButton from './DiscoverButton';
 import Constants from './Constants';
 import config from './config';
 
-import './css/App.css';
+import './css/styles.css';
 
 class Home extends Component {
     constructor(props) {
@@ -52,7 +52,7 @@ class Home extends Component {
         })
         return(
             <div className="poster-wrapper">
-                {discoverBtns}
+                {/*{discoverBtns}*/}
                 {postersArray}
             </div>
         )

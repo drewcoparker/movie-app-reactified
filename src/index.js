@@ -7,7 +7,7 @@ import SingleMovie from './SingleMovie';
 import SearchResults from './SearchResults';
 
 // CSS
-import './css/index.css';
+import './css/styles.css';
 
 ReactDOM.render(
     <Router history={hashHistory}>

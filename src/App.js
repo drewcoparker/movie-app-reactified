@@ -3,8 +3,7 @@ import Navbar from './Navbar';
 
 
 // CSS
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import './css/App.css';
+import './css/styles.css';
 
 class App extends Component {
     constructor(props) {
@@ -24,7 +23,7 @@ class App extends Component {
 
     render() {
         return (
-            <div>
+            <div className='app-wrapper'>
                 <Navbar functionFromParent={this.handleSearch}/>
                 {this.props.children}
             </div>
