@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
-import Poster from './Poster';
+import MovieCard from './MovieCard';
 import DiscoverButton from './DiscoverButton';
 import Constants from './Constants';
 import config from './config';
@@ -10,53 +10,71 @@ import './css/styles.css';
 class Home extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            moviePosters: []
-        }
+        this.state = {movieObjects: []}
         this.handleCategoryChange = this.handleCategoryChange.bind(this);
+        this.componentDidMount = this.componentDidMount.bind(this);
     }
 
     componentDidMount() {
-        var url = 'https://api.themoviedb.org/3/movie/now_playing?api_key=fec8b5ab27b292a68294261bb21b04a5';
+        var apiResults = [];
+        var append = `append_to_response=credits,release_dates`;
+        var url = `${Constants.baseUrl}/movie/now_playing?${config.apiKey}`;
+
+        // $.getJSON(url).then((movieData) => {
+        //     console.log(movieData.results);
+        // })
+
+
+
         $.getJSON(url, (movieData) => {
-            this.setState({
-                moviePosters: movieData.results
-            })
+            var movies = movieData.results;
+            for (let movie of movies) {
+                var id = movie.id;
+                var detailedUrl = `${Constants.baseUrl}/movie/${id}?${config.apiKey}&${append}`;
+                $.getJSON(detailedUrl, (detailedMovieData) => {
+                    var detailResults = detailedMovieData;
+                    apiResults.push(detailResults);
+                    this.setState({movieObjects: apiResults});
+                });
+            }
         });
+        console.log(apiResults);
     }
 
     handleCategoryChange(categoryApiUrl) {
         var url = Constants.baseUrl + categoryApiUrl + config.apiKey;
         $.getJSON(url, (categoryData) => {
             this.setState({
-                moviePosters: categoryData.results
+                movieObjects: categoryData.results
             })
         })
     }
 
     render() {
-        var postersArray = [];
-        this.state.moviePosters.map((poster, index) => {
-            postersArray.push(<Poster poster={poster} key={index} />);
+        var cards = [];
+        this.state.movieObjects.map((card, index) => {
+            cards.push(<MovieCard card={card} key={index} />);
         });
-        var discoverBtns = [];
-        Constants.discoverLinks.map((category, index) => {
-            discoverBtns.push(
-                <DiscoverButton
-                    buttonLink={category.link}
-                    buttonText={category.buttonText}
-                    key={index}
-                    functionFromParent={this.handleCategoryChange}
-                />
-            )
-        })
         return(
-            <div className="poster-wrapper">
-                {/*{discoverBtns}*/}
-                {postersArray}
+            <div className="cards-wrapper">
+                {cards}
             </div>
         )
     }
 }
 
 export default Home;
+
+
+
+// var discoverBtns = [];
+// Constants.discoverLinks.map((category, index) => {
+//     discoverBtns.push(
+//         <DiscoverButton
+//             buttonLink={category.link}
+//             buttonText={category.buttonText}
+//             key={index}
+//             functionFromParent={this.handleCategoryChange}
+//         />
+//     )
+// })

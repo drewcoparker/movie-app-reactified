@@ -1,6 +1,6 @@
 
 module.exports = {
-    baseUrl: 'https://api.themoviedb.org/3/',
+    baseUrl: 'https://api.themoviedb.org/3',
     encoding: 'language=en-US&page=1&include_adult=false',
     imageBase: 'https://image.tmdb.org/t/p/w370_and_h556_bestv2',
     imageFUll: 'https://image.tmdb.org/t/p/w800',

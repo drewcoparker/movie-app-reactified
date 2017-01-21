@@ -14,7 +14,7 @@ ReactDOM.render(
         <Route path='/' component={App}>
             <IndexRoute component={Home} />
             <Route path='movie/:id' component={SingleMovie} />
-            <Route path='search/:movieToSearchFor' component={SearchResults} />
+            {/* <Route path='search/:movieToSearchFor' component={SearchResults} /> */}
         </Route>
     </Router>,
 

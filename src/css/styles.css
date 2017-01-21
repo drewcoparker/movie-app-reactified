@@ -89,11 +89,11 @@ header {
     display: inline-block !important;
 }
 
-.poster-wrapper {
+.cards-wrapper {
     margin: 20px 5%;
 }
 
-.poster {
+.card {
     position: relative;
     margin: 10px;
     height: 278px;
@@ -103,18 +103,18 @@ header {
     box-shadow: 1px 2px 5px rgba(0,0,0,0.4);
 }
 
-.poster a img {
+.card a img {
     float: left;
     vertical-align: baseline;
     height: 278px;
     border-radius: 1px;
 }
 
-.poster-content {
+.card-content {
     position: absolute;
     left: 185px;
     height: 257px;
     width: calc(100% - 208px);
     margin: 10px;
-    border: 1px solid black;
+    border: 1px dashed #cacaca;
 }
