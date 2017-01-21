@@ -6,10 +6,18 @@ import Constants from './Constants';
 import './css/styles.css';
 
 class MovieCard extends Component {
+    constructor(props) {
+        super(props);
+    }
 
+    componentDidMount() {
+
+    }
+
+    
 
     render() {
-        console.log(this.props.card.title);
+        console.log(this.props.card);
         var imgPath = `${Constants.imageBase}${this.props.card.poster_path}`;
         var posterLink = `/movie/${this.props.card.id}`;
         return(
