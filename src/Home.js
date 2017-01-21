@@ -19,26 +19,35 @@ class Home extends Component {
         var apiResults = [];
         var append = `append_to_response=credits,release_dates`;
         var url = `${Constants.baseUrl}/movie/now_playing?${config.apiKey}`;
-
-        // $.getJSON(url).then((movieData) => {
-        //     console.log(movieData.results);
-        // })
-
-
-
-        $.getJSON(url, (movieData) => {
-            var movies = movieData.results;
-            for (let movie of movies) {
-                var id = movie.id;
+        console.log('before');
+        $.getJSON(url).then((movieData) => {
+            return Promise.all(movieData.results.map((result) => {
+                var id = result.id;
                 var detailedUrl = `${Constants.baseUrl}/movie/${id}?${config.apiKey}&${append}`;
-                $.getJSON(detailedUrl, (detailedMovieData) => {
-                    var detailResults = detailedMovieData;
-                    apiResults.push(detailResults);
-                    this.setState({movieObjects: apiResults});
+                return $.getJSON(detailedUrl).then((detailedResult) => {
+                    return apiResults.push(detailedResult);
                 });
-            }
-        });
-        console.log(apiResults);
+            }))
+        }).then(() => {
+            return this.setState({movieObjects: apiResults});
+        })
+
+
+
+
+        // $.getJSON(url, (movieData) => {
+        //     var movies = movieData.results;
+        //     for (let movie of movies) {
+        //         var id = movie.id;
+        //         var detailedUrl = `${Constants.baseUrl}/movie/${id}?${config.apiKey}&${append}`;
+        //         $.getJSON(detailedUrl, (detailedMovieData) => {
+        //             var detailResults = detailedMovieData;
+        //             apiResults.push(detailResults);
+        //             this.setState({movieObjects: apiResults});
+        //         });
+        //     }
+        // });
+        // console.log(apiResults);
     }
 
     handleCategoryChange(categoryApiUrl) {
