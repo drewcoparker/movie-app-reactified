@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Navbar from './Navbar';
+import Header from './Header';
 
 
 // CSS
@@ -24,7 +24,7 @@ class App extends Component {
     render() {
         return (
             <div className='app-wrapper'>
-                <Navbar functionFromParent={this.handleSearch}/>
+                <Header functionFromParent={this.handleSearch}/>
                 {this.props.children}
             </div>
         );

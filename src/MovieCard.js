@@ -14,7 +14,7 @@ class MovieCard extends Component {
 
     }
 
-    
+
 
     render() {
         console.log(this.props.card);
@@ -25,7 +25,7 @@ class MovieCard extends Component {
                 <Link to={posterLink}><img src={imgPath} role="presentation"/></Link>
                 <div className='card-content'>
                     <div className='title'>
-
+                        {this.props.card.title}
                     </div>
                 </div>
             </div>
