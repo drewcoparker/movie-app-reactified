@@ -21,12 +21,12 @@ class Header extends Component {
     render() {
         return(
             <Navbar>
-                <Navbar.Form>
+                <Navbar.Form >
                     <FormGroup>
                         <FormControl id='search-input' type="text" placeholder="Search" />
                     </FormGroup>
                     {' '}
-                    <Button type="submit">Go</Button>
+                    <Button id='search-btn' type="submit">Go</Button>
                 </Navbar.Form>
             </Navbar>
 

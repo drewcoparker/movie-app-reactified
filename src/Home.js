@@ -18,7 +18,7 @@ class Home extends Component {
     componentDidMount() {
         var apiResults = [];
         var append = `append_to_response=credits,release_dates`;
-        var url = `${Constants.baseUrl}/movie/now_playing?${config.apiKey}`;
+        var url = `${Constants.baseUrl}/movie/now_playing?${config.apiKey}&page=1`;
         $.getJSON(url).then((movieData) => {
             return Promise.all(movieData.results.map((result) => {
                 var movie = {};
