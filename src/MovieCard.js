@@ -15,14 +15,15 @@ class MovieCard extends Component {
 
     }
 
-
-
     render() {
+        // Some movie descriptions are long and threaten the CSS structure. I've
+        // elected to truncate long descriptions at 325 characters in order to
+        // normalize things. This affects only about 10% of movies.
         var overview = this.props.card.overview;
-        if (overview.length > 349) {
+        if (overview.length > 324) {
             overview.split('')
             var elipsifiedArray = [];
-            for (let i = 0; i < 350; i++) {
+            for (let i = 0; i < 325; i++) {
                 elipsifiedArray.push(overview[i]);
             }
             var elipsifiedOverview = elipsifiedArray.join('').concat('...');
@@ -35,9 +36,13 @@ class MovieCard extends Component {
                 <Link to={posterLink}><img src={imgPath} role="presentation"/></Link>
 
                 <div className='card-content'>
-                    
+
                     <div className='title'>
-                        {this.props.card.title}
+                        <p>{this.props.card.title}</p>
+                    </div>
+
+                    <div className='director'>
+                        <p>Director: {this.props.card.director}</p>
                     </div>
 
                     <div className='description'>
@@ -45,9 +50,17 @@ class MovieCard extends Component {
                     </div>
 
                     <div className='lower-card'>
-                        <Button className='trailer-btn btn-sm btn-danger'
-                                type="submit">View trailer
-                        </Button>
+                        <div className='lower-card-left'>
+                            <span>Rated {this.props.card.mpaa}</span>
+                        </div>
+                        <div className='lower-card-middle'>
+                            <Button className='trailer-btn btn-sm btn-danger'
+                                    type="submit">View trailer
+                            </Button>
+                        </div>
+                        <div className='lower-card-right'>
+                            <span>{this.props.card.runtime} mins</span>
+                        </div>
                     </div>
 
                 </div>
