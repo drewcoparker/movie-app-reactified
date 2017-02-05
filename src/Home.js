@@ -79,8 +79,13 @@ class Home extends Component {
         })
     }
 
-    handleTrailerClick(id) {
-        console.log(id);
+    handleTrailerClick(e, id) {
+        e.preventDefault();
+        var trailerUrl = `${Constants.baseUrl}/movie/${id}/videos?${config.apiKey}`;
+        $.getJSON(trailerUrl).then((trailerData) => {
+            var trailer = trailerData.results[0];
+            
+        })
     }
 
     handleCategoryChange(categoryApiUrl) {

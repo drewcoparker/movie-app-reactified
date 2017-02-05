@@ -56,7 +56,7 @@ class MovieCard extends Component {
                         </div>
                         <div className='lower-card-middle'>
                             <Button className='trailer-btn btn-sm btn-danger'
-                                    onClick={() => this.props.onBtnClick(this.props.card.id)}>
+                                    onClick={(e) => this.props.onBtnClick(e, this.props.card.id)}>
                                     <span>View trailer</span>
                             </Button>
                         </div>
