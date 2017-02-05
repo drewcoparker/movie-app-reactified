@@ -13,6 +13,7 @@ class Home extends Component {
         this.state = {movieObjects: []}
         this.handleCategoryChange = this.handleCategoryChange.bind(this);
         this.componentDidMount = this.componentDidMount.bind(this);
+        this.handleTrailerClick = this.handleTrailerClick.bind(this);
     }
 
     componentDidMount() {
@@ -42,6 +43,7 @@ class Home extends Component {
                     movie.title = detailedResult.title;
                     movie.vote_average = detailedResult.vote_average;
                     movie.vote_count = detailedResult.vote_count;
+                    movie.trailer = '';
 
                     // Find the director amongst the crew and assign his or her
                     // name to the director property
@@ -77,6 +79,10 @@ class Home extends Component {
         })
     }
 
+    handleTrailerClick(id) {
+        console.log(id);
+    }
+
     handleCategoryChange(categoryApiUrl) {
         var url = Constants.baseUrl + categoryApiUrl + config.apiKey;
         $.getJSON(url, (categoryData) => {
@@ -89,7 +95,7 @@ class Home extends Component {
     render() {
         var cards = [];
         this.state.movieObjects.map((card, index) => {
-            cards.push(<MovieCard card={card} key={index} />);
+            cards.push(<MovieCard card={card} key={index} onBtnClick={this.handleTrailerClick}/>);
         });
         return(
             <div className="cards-wrapper">

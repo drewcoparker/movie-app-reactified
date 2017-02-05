@@ -9,10 +9,11 @@ import './css/styles.css';
 class MovieCard extends Component {
     constructor(props) {
         super(props);
+        // this.btnclick = this.btnclick.bind(this);
     }
 
     componentDidMount() {
-        console.log(this.props.card);
+
     }
 
     render() {
@@ -32,7 +33,7 @@ class MovieCard extends Component {
         var imgPath = `${Constants.imageBase}${this.props.card.poster_path}`;
         var posterLink = `/movie/${this.props.card.id}`;
         return(
-            <div className='card'>
+            <div className='card' id={this.props.card.id}>
                 <Link to={posterLink}><img src={imgPath} role="presentation"/></Link>
 
                 <div className='card-content'>
@@ -55,7 +56,8 @@ class MovieCard extends Component {
                         </div>
                         <div className='lower-card-middle'>
                             <Button className='trailer-btn btn-sm btn-danger'
-                                    type="submit">View trailer
+                                    onClick={() => this.props.onBtnClick(this.props.card.id)}>
+                                    <span>View trailer</span>
                             </Button>
                         </div>
                         <div className='lower-card-right'>
