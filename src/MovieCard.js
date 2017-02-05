@@ -12,7 +12,7 @@ class MovieCard extends Component {
     }
 
     componentDidMount() {
-
+        console.log(this.props.card);
     }
 
     render() {

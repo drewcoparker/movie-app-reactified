@@ -54,6 +54,7 @@ class Home extends Component {
                     }
                     // Find the US certification and assign that value to the
                     // mpaa property
+                    movie.mpaa = 'NR'
                     var releaseCountries = detailedResult.release_dates.results
                     for (let country of releaseCountries) {
                         if (country.iso_3166_1 === 'US') {
@@ -63,8 +64,6 @@ class Home extends Component {
                                 if (mpaa !== '') {
                                     movie.mpaa = mpaa;
                                     break;
-                                } else {
-                                    movie.mpaa = 'NR';
                                 }
                             }
                         }
