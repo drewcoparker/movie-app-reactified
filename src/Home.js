@@ -10,7 +10,10 @@ import './css/styles.css';
 class Home extends Component {
     constructor(props) {
         super(props);
-        this.state = {movieObjects: []}
+        this.state = {
+            movieObjects: [],
+            pages: ''
+        }
         this.handleCategoryChange = this.handleCategoryChange.bind(this);
         this.componentDidMount = this.componentDidMount.bind(this);
         this.handleTrailerClick = this.handleTrailerClick.bind(this);
@@ -84,7 +87,7 @@ class Home extends Component {
         var trailerUrl = `${Constants.baseUrl}/movie/${id}/videos?${config.apiKey}`;
         $.getJSON(trailerUrl).then((trailerData) => {
             var trailer = trailerData.results[0];
-            
+
         })
     }
 

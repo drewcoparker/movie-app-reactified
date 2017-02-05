@@ -32,9 +32,12 @@ class MovieCard extends Component {
 
         var imgPath = `${Constants.imageBase}${this.props.card.poster_path}`;
         var posterLink = `/movie/${this.props.card.id}`;
+        var placeHolderPoster = "http://placehold.it/185x278?text=No+poster+:/";
         return(
             <div className='card' id={this.props.card.id}>
-                <Link to={posterLink}><img src={imgPath} role="presentation"/></Link>
+                <Link to={posterLink}>
+                    <img src={imgPath || placeHolderPoster} role="presentation"/>
+                </Link>
 
                 <div className='card-content'>
 
