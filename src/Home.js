@@ -12,7 +12,7 @@ class Home extends Component {
         super(props);
         this.state = {
             movieObjects: [],
-            pages: ''
+            page: 1
         }
         this.handleCategoryChange = this.handleCategoryChange.bind(this);
         this.componentDidMount = this.componentDidMount.bind(this);
@@ -20,9 +20,10 @@ class Home extends Component {
     }
 
     componentDidMount() {
+        var pageResult = this.state.page;
         var apiResults = [];
         var append = `append_to_response=credits,release_dates`;
-        var url = `${Constants.baseUrl}/movie/now_playing?${config.apiKey}&page=1`;
+        var url = `${Constants.baseUrl}/movie/now_playing?${config.apiKey}&page=${pageResult}`;
         $.getJSON(url).then((movieData) => {
             return Promise.all(movieData.results.map((result) => {
                 var movie = {};

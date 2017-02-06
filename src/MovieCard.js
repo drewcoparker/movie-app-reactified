@@ -21,6 +21,9 @@ class MovieCard extends Component {
         // elected to truncate long descriptions at 325 characters in order to
         // normalize things. This affects only about 10% of movies.
         var overview = this.props.card.overview;
+        if ((overview === null) || overview === '') {
+            overview = "No description available :/"
+        }
         if (overview.length > 324) {
             overview.split('')
             var elipsifiedArray = [];
@@ -30,13 +33,18 @@ class MovieCard extends Component {
             var elipsifiedOverview = elipsifiedArray.join('').concat('...');
         }
 
-        var imgPath = `${Constants.imageBase}${this.props.card.poster_path}`;
+        var imgPath;
+        if (this.props.card.poster_path === null) {
+            imgPath = "http://placehold.it/185x278?text=No+poster+:/";
+        } else {
+            imgPath = `${Constants.imageBase}${this.props.card.poster_path}`;
+        }
         var posterLink = `/movie/${this.props.card.id}`;
-        var placeHolderPoster = "http://placehold.it/185x278?text=No+poster+:/";
+
         return(
             <div className='card' id={this.props.card.id}>
                 <Link to={posterLink}>
-                    <img src={imgPath || placeHolderPoster} role="presentation"/>
+                    <img src={imgPath} role="presentation"/>
                 </Link>
 
                 <div className='card-content'>
