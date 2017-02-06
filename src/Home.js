@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import MovieCard from './MovieCard';
+import Paginator from './Paginator';
 import DiscoverButton from './DiscoverButton';
 import Constants from './Constants';
 import config from './config';
@@ -107,8 +108,13 @@ class Home extends Component {
             cards.push(<MovieCard card={card} key={index} onBtnClick={this.handleTrailerClick}/>);
         });
         return(
-            <div className="cards-wrapper">
-                {cards}
+            <div className='app-wrapper'>
+                <div className="cards-wrapper">
+                    {cards}
+                </div>
+                <div className="paginator">
+                    <Paginator />
+                </div>
             </div>
         )
     }

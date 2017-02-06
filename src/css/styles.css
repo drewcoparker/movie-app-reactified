@@ -171,3 +171,7 @@ header {
     font-size: 11px;
     padding: 9px;
 }
+
+.paginator {
+    text-align: center;
+}
