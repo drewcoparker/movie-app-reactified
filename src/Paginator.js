@@ -8,10 +8,9 @@ class Paginator extends Component {
 
     render() {
         return(
-            <Pagination
-                bsSize="large"
-                items={10}
-                 />
+            <Pagination bsSize="large"
+                        items={10}
+                        onClick={this.props.onPaginatorClick}/>
         )
     }
 }

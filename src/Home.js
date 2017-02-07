@@ -18,6 +18,7 @@ class Home extends Component {
         this.handleCategoryChange = this.handleCategoryChange.bind(this);
         this.componentDidMount = this.componentDidMount.bind(this);
         this.handleTrailerClick = this.handleTrailerClick.bind(this);
+        this.handlePaginatorClick = this.handlePaginatorClick.bind(this);
     }
 
     componentDidMount() {
@@ -102,6 +103,10 @@ class Home extends Component {
         })
     }
 
+    handlePaginatorClick() {
+        console.log('asdf');
+    }
+
     render() {
         var cards = [];
         this.state.movieObjects.map((card, index) => {
@@ -113,7 +118,7 @@ class Home extends Component {
                     {cards}
                 </div>
                 <div className="paginator">
-                    <Paginator />
+                    <Paginator page={this.state.page} onPaginatorClick={this.handlePaginatorClick}/>
                 </div>
             </div>
         )
