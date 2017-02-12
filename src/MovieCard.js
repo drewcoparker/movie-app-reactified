@@ -54,7 +54,7 @@ class MovieCard extends Component {
                     </div>
 
                     <div className='director'>
-                        <p>Director: {this.props.card.director}</p>
+                        <p>Director by {this.props.card.director}</p>
                     </div>
 
                     <div className='description'>

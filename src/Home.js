@@ -89,8 +89,9 @@ class Home extends Component {
         e.preventDefault();
         var trailerUrl = `${Constants.baseUrl}/movie/${id}/videos?${config.apiKey}`;
         $.getJSON(trailerUrl).then((trailerData) => {
-            var trailer = trailerData.results[0];
-
+            let trailer = trailerData.results[0].key;
+            var youtubeLink = `https://www.youtube.com/embed/${trailer}?autoplay=1`;
+            console.log(youtubeLink);
         })
     }
 
