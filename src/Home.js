@@ -13,20 +13,27 @@ class Home extends Component {
         super(props);
         this.state = {
             movieObjects: [],
-            page: 1
+            activePage: 1,
+            totalPages: 0
         }
         this.handleCategoryChange = this.handleCategoryChange.bind(this);
         this.componentDidMount = this.componentDidMount.bind(this);
         this.handleTrailerClick = this.handleTrailerClick.bind(this);
         this.handlePaginatorClick = this.handlePaginatorClick.bind(this);
+        this.getMovieResults = this.getMovieResults.bind(this);
     }
 
     componentDidMount() {
-        var pageResult = this.state.page;
+        this.getMovieResults();
+    }
+
+    getMovieResults() {
+        var pageResult = this.state.activePage;
         var apiResults = [];
         var append = `append_to_response=credits,release_dates`;
         var url = `${Constants.baseUrl}/movie/now_playing?${config.apiKey}&page=${pageResult}`;
         $.getJSON(url).then((movieData) => {
+            this.setState({totalPages: movieData.total_pages});
             return Promise.all(movieData.results.map((result) => {
                 var movie = {};
                 var id = result.id;
@@ -104,8 +111,9 @@ class Home extends Component {
         })
     }
 
-    handlePaginatorClick() {
-        console.log('asdf');
+    handlePaginatorClick(e) {
+        this.setState({activePage: e});
+        this.getMovieResults();
     }
 
     render() {
@@ -119,7 +127,9 @@ class Home extends Component {
                     {cards}
                 </div>
                 <div className="paginator">
-                    <Paginator page={this.state.page} onPaginatorClick={this.handlePaginatorClick}/>
+                    <Paginator  activePage={this.state.activePage}
+                                numberPages={this.state.totalPages}
+                                onPaginatorClick={this.handlePaginatorClick}/>
                 </div>
             </div>
         )
