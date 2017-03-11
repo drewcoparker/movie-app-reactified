@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { Button } from 'react-bootstrap';
-import Constants from './Constants';
+import Constants from '../Constants';
 
 // CSS
-import './css/styles.css';
+import '../../public/css/styles.css';
 
 class MovieCard extends Component {
     constructor(props) {

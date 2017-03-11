@@ -3,10 +3,10 @@ import $ from 'jquery';
 import MovieCard from './MovieCard';
 import Paginator from './Paginator';
 import DiscoverButton from './DiscoverButton';
-import Constants from './Constants';
-import config from './config';
+import Constants from '../Constants';
+import config from '../config';
 
-import './css/styles.css';
+import '../../public/css/styles.css';
 
 class Home extends Component {
     constructor(props) {

@@ -3,7 +3,7 @@ import Router, { Link } from 'react-router';
 import { Navbar, FormGroup, FormControl, Button } from 'react-bootstrap';
 
 // CSS
-import './css/styles.css';
+import '../../public/css/styles.css';
 
 class Header extends Component {
     constructor(props) {

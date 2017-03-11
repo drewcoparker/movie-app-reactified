@@ -3,7 +3,7 @@ import Header from './Header';
 
 
 // CSS
-import './css/styles.css';
+import '../../public/css/styles.css';
 
 class App extends Component {
     constructor(props) {

@@ -6,13 +6,20 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 
 // Components
-import App from './App';
-import Home from './Home';
-import SingleMovie from './SingleMovie';
-import SearchResults from './SearchResults';
+import App from './components/App';
+import Home from './components/Home';
+import SingleMovie from './components/SingleMovie';
+import SearchResults from './components/SearchResults';
 
 // CSS
-import './css/styles.css';
+import '../public/css/styles.css';
+
+// Create the redux store. Pass it the reducers and react-router-redux middleware.
+// import { reducers } from
+// const store = createStore({
+//     reducers,
+//
+// })
 
 ReactDOM.render(
     <Router history={browserHistory}>
