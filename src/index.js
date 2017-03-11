@@ -1,6 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, hashHistory, IndexRoute } from 'react-router';
+import { createStore, combineReducers } from 'redux'
+import { Provider } from 'react-redux'
+import { Router, Route, IndexRoute, browserHistory } from 'react-router'
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
+
+// Components
 import App from './App';
 import Home from './Home';
 import SingleMovie from './SingleMovie';
@@ -10,7 +15,7 @@ import SearchResults from './SearchResults';
 import './css/styles.css';
 
 ReactDOM.render(
-    <Router history={hashHistory}>
+    <Router history={browserHistory}>
         <Route path='/' component={App}>
             <IndexRoute component={Home} />
             <Route path='movie/:id' component={SingleMovie} />

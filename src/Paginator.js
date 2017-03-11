@@ -21,7 +21,7 @@ class Paginator extends Component {
                         boundaryLinks
                         items={this.props.numberPages}
                         maxButtons={5}
-                        activePage={this.props.page}
+                        activePage={this.props.activePage}
                         onSelect={this.props.onPaginatorClick}/>
         )
     }
