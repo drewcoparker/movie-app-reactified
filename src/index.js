@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, combineReducers } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
@@ -14,21 +14,25 @@ import SearchResults from './components/SearchResults';
 // CSS
 import '../public/css/styles.css';
 
-// Create the redux store. Pass it the reducers and react-router-redux middleware.
-// import { reducers } from
-// const store = createStore({
-//     reducers,
-//
-// })
+// Create the redux store. Pass it the reducers and the middleware.
+import reducers from './reducers/index.js';
+import reduxPromise from 'redux-promise';
+const store = createStore(
+    reducers,
+    applyMiddleware(
+        reduxPromise
+    )
+);
 
 ReactDOM.render(
-    <Router history={browserHistory}>
-        <Route path='/' component={App}>
-            <IndexRoute component={Home} />
-            <Route path='movie/:id' component={SingleMovie} />
-            {/* <Route path='search/:movieToSearchFor' component={SearchResults} /> */}
-        </Route>
-    </Router>,
-
+    <Provider store={store} >
+        <Router history={browserHistory}>
+            <Route path='/' component={App}>
+                <IndexRoute component={Home} />
+                <Route path='movie/:id' component={SingleMovie} />
+                {/* <Route path='search/:movieToSearchFor' component={SearchResults} /> */}
+            </Route>
+        </Router>
+    </Provider>,
     document.getElementById('root')
 );
