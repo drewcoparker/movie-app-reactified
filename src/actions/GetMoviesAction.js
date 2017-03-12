@@ -2,19 +2,19 @@ import $ from 'jquery';
 import Constants from '../Constants';
 import config from '../config';
 
-export default function(page=1) {
+export default function(page) {
 
     var apiResults = [];
-    var append = `append_to_response=credits,release_dates`;
     var url = `${Constants.baseUrl}/movie/now_playing?${config.apiKey}&page=${page}`;
     var promise = $.getJSON(url).then((movieData) => {
         return Promise.all(movieData.results.map((result) => {
             var movie = {};
             var id = result.id;
-            var detailedUrl = `${Constants.baseUrl}/movie/${id}?${config.apiKey}&${append}`;
+            var detailedUrl = `${Constants.baseUrl}/movie/${id}?${config.apiKey}&${Constants.append}`;
+            
+            // Assign the result property values to our own object
+            // property values.
             return $.getJSON(detailedUrl).then((detailedResult) => {
-                // Assign the result property values to our own object
-                // property values.
                 movie.budget = detailedResult.budget;
                 movie.id = detailedResult.id;
                 movie.homepage = detailedResult.homepage;
@@ -60,7 +60,7 @@ export default function(page=1) {
                 // Push the object to our movie objects array (state)
                 return apiResults.push(movie);
             });
-        }))
+        }));
     }).then(() => {
         return apiResults
     });

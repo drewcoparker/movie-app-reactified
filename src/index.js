@@ -17,8 +17,10 @@ import '../public/css/styles.css';
 // Create the redux store. Pass it the reducers and the middleware.
 import reducers from './reducers/index.js';
 import reduxPromise from 'redux-promise';
+const initializedState = {page: 1};
 const store = createStore(
     reducers,
+    initializedState,
     applyMiddleware(
         reduxPromise
     )

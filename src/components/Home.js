@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-// import $ from 'jquery';
 import MovieCard from './MovieCard';
 import Paginator from './Paginator';
 import DiscoverButton from './DiscoverButton';
-// import Constants from '../Constants';
-// import config from '../config';
-
 import GetMoviesAction from '../actions/GetMoviesAction.js';
 
 import '../../public/css/styles.css';
@@ -15,20 +11,16 @@ import '../../public/css/styles.css';
 class Home extends Component {
     constructor(props) {
         super(props);
-        // this.state = {
-        //     movieObjects: [],
-        //     activePage: 1,
-        //     totalPages: 0
-        // }
-        // this.handleCategoryChange = this.handleCategoryChange.bind(this);
-        // this.componentDidMount = this.componentDidMount.bind(this);
-        // this.handleTrailerClick = this.handleTrailerClick.bind(this);
-        // this.handlePaginatorClick = this.handlePaginatorClick.bind(this);
-        // this.getMovieResults = this.getMovieResults.bind(this);
     }
 
     componentDidMount() {
-        this.props.getMovies();
+        this.props.getMovies(this.props.page);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.page !== nextProps.page) {
+            this.props.getMovies(this.props.page)
+        }
     }
 
     // handleTrailerClick(e, id) {
@@ -50,15 +42,13 @@ class Home extends Component {
     //     })
     // }
 
-    // handlePaginatorClick(e) {
-    //     this.setState({activePage: e});
-    //     this.getMovieResults();
-    // }
-
     render() {
+        console.log(this.props.movieData);
         var cards = [];
         this.props.movieData.map((card, index) => {
-            return cards.push(<MovieCard card={card} key={index} />);
+            return cards.push(
+                <MovieCard card={card} key={index} />
+            );
         });
         return(
             <div className='app-wrapper'>
@@ -66,7 +56,7 @@ class Home extends Component {
                     {cards}
                 </div>
                 <div className="paginator">
-
+                    <Paginator />
                 </div>
             </div>
         )
@@ -75,7 +65,8 @@ class Home extends Component {
 
 function mapStateToProps(state) {
     return {
-        movieData: state.movies
+        movieData: state.movies,
+        page: state.page
     }
 }
 
@@ -86,9 +77,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
-
-//
-// <Paginator
-//     activePage={this.state.activePage}
-//     numberPages={this.state.totalPages}
-//     onPaginatorClick={this.handlePaginatorClick} />
