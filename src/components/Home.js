@@ -14,15 +14,17 @@ class Home extends Component {
     // }
 
     componentDidMount() {
-        console.log('asdf');
+        console.log('componentDidMount,', `page: ${this.props.page}`);
         this.props.getMovies(this.props.page);
     }
 
     componentWillReceiveProps(nextProps) {
         if (this.props.page !== nextProps.page) {
-            this.props.getMovies(this.props.page)
+            console.log('componentWillReceiveProps,', `page: ${nextProps.page}`);
+            this.props.getMovies(nextProps.page)
         }
     }
+
 
     // handleTrailerClick(e, id) {
     //     e.preventDefault();
@@ -64,7 +66,6 @@ class Home extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state.page);
     return {
         movieData: state.movies,
         page: state.page

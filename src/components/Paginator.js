@@ -12,6 +12,7 @@ class Paginator extends Component {
 
     handlePaginatorClick(e) {
         this.props.setPage(e);
+        window.scrollTo(0, 0);
     }
 
     render() {
