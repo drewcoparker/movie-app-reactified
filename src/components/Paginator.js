@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Pagination } from 'react-bootstrap';
+import { Pagination } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import SetPageAction from '../actions/SetPageAction';
@@ -44,7 +44,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Paginator);
-
-
-// activePage={this.state.activePage}
-// onSelect={this.handleSelect}

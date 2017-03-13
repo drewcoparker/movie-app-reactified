@@ -3,17 +3,18 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import MovieCard from './MovieCard';
 import Paginator from './Paginator';
-import DiscoverButton from './DiscoverButton';
+// import DiscoverButton from './DiscoverButton';
 import GetMoviesAction from '../actions/GetMoviesAction.js';
 
 import '../../public/css/styles.css';
 
 class Home extends Component {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
 
     componentDidMount() {
+        console.log('asdf');
         this.props.getMovies(this.props.page);
     }
 
@@ -43,7 +44,6 @@ class Home extends Component {
     // }
 
     render() {
-        console.log(this.props.movieData);
         var cards = [];
         this.props.movieData.map((card, index) => {
             return cards.push(
@@ -64,6 +64,7 @@ class Home extends Component {
 }
 
 function mapStateToProps(state) {
+    console.log(state.page);
     return {
         movieData: state.movies,
         page: state.page

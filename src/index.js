@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
+// import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 
 // Components
 import App from './components/App';
 import Home from './components/Home';
 import SingleMovie from './components/SingleMovie';
-import SearchResults from './components/SearchResults';
+// import SearchResults from './components/SearchResults';
 
 // CSS
 import '../public/css/styles.css';
@@ -25,6 +25,11 @@ const store = createStore(
         reduxPromise
     )
 );
+
+store.subscribe(() => {
+    console.log(store.getState());
+});
+
 
 ReactDOM.render(
     <Provider store={store} >

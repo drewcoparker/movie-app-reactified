@@ -7,10 +7,9 @@ import Constants from '../Constants';
 import '../../public/css/styles.css';
 
 class MovieCard extends Component {
-    constructor(props) {
-        super(props);
-        // this.btnclick = this.btnclick.bind(this);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
 
     componentDidMount() {
 
