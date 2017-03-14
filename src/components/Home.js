@@ -25,17 +25,6 @@ class Home extends Component {
         }
     }
 
-
-    // handleTrailerClick(e, id) {
-    //     e.preventDefault();
-    //     var trailerUrl = `${Constants.baseUrl}/movie/${id}/videos?${config.apiKey}`;
-    //     $.getJSON(trailerUrl).then((trailerData) => {
-    //         let trailer = trailerData.results[0].key;
-    //         var youtubeLink = `https://www.youtube.com/embed/${trailer}?autoplay=1`;
-    //         console.log(youtubeLink);
-    //     })
-    // }
-
     // handleCategoryChange(categoryApiUrl) {
     //     var url = Constants.baseUrl + categoryApiUrl + config.apiKey;
     //     $.getJSON(url, (categoryData) => {

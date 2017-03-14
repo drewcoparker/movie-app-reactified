@@ -1,10 +1,9 @@
 import React, {Component} from "react";
-import {Modal, Button} from "react-bootstrap";
+import { Modal, Button } from 'react-bootstrap';
 
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import loginModalAction from '../actions/LoginModalAction.js';
-import Login from "./Login.js"
+import TrailerModalAction from '../actions/TrailerModalAction.js';
 
 class TrailerModal extends Component{
     constructor(props) {
@@ -20,12 +19,8 @@ class TrailerModal extends Component{
 
     render() {
         return (
-            <Modal show={this.props.loginModal.showModal} onHide={this.handleModalClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title className="text-center">Login to start SLAYING CODE</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                </Modal.Body>
+            <Modal show={this.props.shown.showModal} onHide={this.handleModalClose}>
+                <iframe id="${id}" width="600" height="355" src={this.props.trailer}></iframe>
                 <Modal.Footer>
                     <Button onClick={this.handleModalClose}>Close</Button>
                 </Modal.Footer>
@@ -34,16 +29,10 @@ class TrailerModal extends Component{
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        modal: state.modal
-    }
-}
-
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         trailerModalAction: TrailerModalAction
-    })
+    }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TrailerModal);
+export default connect(null, mapDispatchToProps)(TrailerModal);

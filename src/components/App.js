@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Header from './Header';
-
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import TrailerModal from './TrailerModal.js'
 
 // CSS
 import '../../public/css/styles.css';
@@ -15,20 +17,27 @@ class App extends Component {
     }
 
     handleSearch(searchTextFromChild) {
-        this.setState({
-            searchText: searchTextFromChild
-        });
+        this.setState({searchText: searchTextFromChild});
         this.props.router.push('/search/' + encodeURI(searchTextFromChild));
     }
 
     render() {
+        console.log(this.props.showModal);
         return (
             <div className='app-wrapper'>
                 <Header functionFromParent={this.handleSearch}/>
                 {this.props.children}
+                <TrailerModal shown={this.props.showModal} trailer={this.props.trailer}/>
             </div>
         );
     }
 }
 
-export default App;
+function mapStateToProps(state) {
+    return {
+        showModal: state.showModal,
+        trailer: state.trailer
+    }
+}
+
+export default connect(mapStateToProps, null)(App);

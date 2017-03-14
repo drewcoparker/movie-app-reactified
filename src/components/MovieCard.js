@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { Button } from 'react-bootstrap';
 import Constants from '../Constants';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import GetTrailerAction from '../actions/GetTrailerAction.js'
+import TrailerModalAction from '../actions/TrailerModalAction.js'
 
 // CSS
 import '../../public/css/styles.css';
@@ -14,6 +18,13 @@ class MovieCard extends Component {
     componentDidMount() {
 
     }
+
+    handleTrailerBtnClick(e, id) {
+        e.preventDefault();
+        this.props.getTrailer(id)
+        this.props.showModal({showModal: true});
+    }
+
 
     render() {
         // Some movie descriptions are long and threaten the CSS structure. I've
@@ -66,7 +77,7 @@ class MovieCard extends Component {
                         </div>
                         <div className='lower-card-middle'>
                             <Button className='trailer-btn btn-sm btn-danger'
-                                    onClick={(e) => this.props.onBtnClick(e, this.props.card.id)}>
+                                    onClick={(e) => this.handleTrailerBtnClick(e, this.props.card.id)}>
                                     <span>View trailer</span>
                             </Button>
                         </div>
@@ -81,4 +92,17 @@ class MovieCard extends Component {
     }
 }
 
-export default MovieCard;
+function mapStateToProps(state) {
+    return {
+        trailer: state.trailer
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        getTrailer: GetTrailerAction,
+        showModal: TrailerModalAction
+    }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieCard);

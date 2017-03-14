@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 // import Router, { Link } from 'react-router';
 import { Navbar, FormGroup, FormControl, Button } from 'react-bootstrap';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import TrailerModalAction from '../actions/TrailerModalAction.js';
 
 // CSS
 import '../../public/css/styles.css';
@@ -22,6 +19,7 @@ class Header extends Component {
     }
 
     render() {
+        console.log(this.props);
         return(
             <Navbar>
                 <Navbar.Form >
@@ -38,20 +36,7 @@ class Header extends Component {
 
 }
 
-function mapStateToProps(state) {
-    return {
-        modal: state.modal
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({
-        trailerModalAction: TrailerModalAction
-    })
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default Header;
 
 // <header>
 //     <div className="left-header-section"></div>
