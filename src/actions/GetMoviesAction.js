@@ -11,7 +11,7 @@ export default function(page) {
             var movie = {};
             var id = result.id;
             var detailedUrl = `${Constants.baseUrl}/movie/${id}?${config.apiKey}&${Constants.append}`;
-            
+
             // Assign the result property values to our own object
             // property values.
             return $.getJSON(detailedUrl).then((detailedResult) => {
@@ -63,6 +63,8 @@ export default function(page) {
         }));
     }).then(() => {
         return apiResults
+    }).catch((error) => {
+        console.log(error);
     });
     return {
         type: 'GET_MOVIES',
