@@ -19,7 +19,6 @@ class Header extends Component {
     }
 
     render() {
-        console.log(this.props);
         return(
             <Navbar>
                 <Navbar.Form >

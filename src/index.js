@@ -27,7 +27,7 @@ const store = createStore(
 );
 
 store.subscribe(() => {
-    console.log(store.getState());
+    // console.log(store.getState());
 });
 
 

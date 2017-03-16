@@ -14,13 +14,11 @@ class Home extends Component {
     // }
 
     componentDidMount() {
-        console.log('componentDidMount,', `page: ${this.props.page}`);
         this.props.getMovies(this.props.page);
     }
 
     componentWillReceiveProps(nextProps) {
         if (this.props.page !== nextProps.page) {
-            console.log('componentWillReceiveProps,', `page: ${nextProps.page}`);
             this.props.getMovies(nextProps.page)
         }
     }

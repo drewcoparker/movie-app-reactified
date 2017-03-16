@@ -20,7 +20,7 @@ class TrailerModal extends Component{
     render() {
         return (
             <Modal show={this.props.shown.showModal} onHide={this.handleModalClose}>
-                <iframe id="${id}" width="600" height="355" src={this.props.trailer}></iframe>
+                <iframe width="600" height="355" src={this.props.trailer}></iframe>
                 <Modal.Footer>
                     <Button onClick={this.handleModalClose}>Close</Button>
                 </Modal.Footer>

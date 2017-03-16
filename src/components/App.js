@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Header from './Header';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+// import { bindActionCreators } from 'redux';
 import TrailerModal from './TrailerModal.js'
 
 // CSS
@@ -22,7 +22,6 @@ class App extends Component {
     }
 
     render() {
-        console.log(this.props.showModal);
         return (
             <div className='app-wrapper'>
                 <Header functionFromParent={this.handleSearch}/>
