@@ -100,14 +100,15 @@ header {
 }
 
 .cards-wrapper {
-    margin: 20px 5%;
+    max-width: 1000px;
+    margin: 20px auto;
 }
 
 .card {
     position: relative;
     margin: 10px;
     height: 278px;
-    width: 485px;
+    width: 450px;
     display: inline-block;
     background-color: #fff;
     box-shadow: 1px 2px 5px rgba(0,0,0,0.4);

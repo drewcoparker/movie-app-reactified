@@ -20,7 +20,7 @@ class Header extends Component {
 
     render() {
         return(
-            <Navbar>
+            <Navbar className="text-center">
                 <Navbar.Form >
                     <FormGroup>
                         <FormControl id='search-input' type="text" placeholder="Search" />
