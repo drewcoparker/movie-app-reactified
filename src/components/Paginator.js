@@ -16,6 +16,7 @@ class Paginator extends Component {
     }
 
     render() {
+        console.log(this.props.url);
         return(
             <Pagination
                 prev

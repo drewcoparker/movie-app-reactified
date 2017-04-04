@@ -2,12 +2,10 @@ import $ from 'jquery';
 import Constants from '../Constants';
 import config from '../config';
 
-export default function(endpoint, page=1) {
+export default function(endpoint) {
     var apiResults = {};
     var movies = [];
-    console.log(endpoint);
     var promise = $.getJSON(endpoint).then((movieData) => {
-        console.log(movieData);
         apiResults['page'] = movieData.page;
         return Promise.all(movieData.results.map((result) => {
             var movie = {};

@@ -7,6 +7,7 @@ import Paginator from './Paginator';
 import Constants from '../Constants';
 import config from '../config';
 import GetMoviesAction from '../actions/GetMoviesAction.js';
+import SetApiUrlAction from '../actions/SetApiUrlAction.js';
 
 import '../../public/css/styles.css';
 
@@ -17,14 +18,13 @@ class Home extends Component {
             nowPlaying: `${Constants.baseUrl}/movie/now_playing?${config.apiKey}&page=`,
             upComing: `${Constants.baseUrl}/movie/upcoming?${config.apiKey}&page=`,
             search: `${Constants.baseUrl}/search/movie?${config.apiKey}&query=`,
-            page: `&page=`,
             displayMsg: ''
         }
         this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     }
 
     componentDidMount() {
-        this.props.getMovies(this.state.nowPlaying);
+        this.props.getMovies(this.props.url + "1");
         this.setState({
             displayMsg: 'Now playing'
         })
@@ -32,16 +32,17 @@ class Home extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (this.props.fromSetPage !== nextProps.fromSetPage) {
-            this.props.getMovies(this.state.nowPlaying + nextProps.fromSetPage)
+            this.props.getMovies(this.props.url + nextProps.fromSetPage)
         }
     }
 
     handleSearchSubmit(event) {
         event.preventDefault();
-        let page = `&page=${this.props.fromSetPage}`;
+        let page = `&page=`;
         let value = event.target[0].value;
         let searchQuery = this.state.search + value + page;
-        this.props.getMovies(searchQuery);
+        this.props.setUrl(searchQuery);
+        this.props.getMovies(searchQuery + "1");
     }
 
     render() {
@@ -68,7 +69,7 @@ class Home extends Component {
                         {cards}
                     </div>
                     <div className="paginator">
-                        <Paginator />
+                        <Paginator url={this.props.url}/>
                     </div>
                 </div>
             </div>
@@ -77,8 +78,9 @@ class Home extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state.apiResults);
+    console.log(state);
     return {
+        url: state.apiUrl,
         movieData: state.apiResults.movies,
         page: state.apiResults.page,
         fromSetPage: state.page
@@ -87,7 +89,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        getMovies: GetMoviesAction
+        getMovies: GetMoviesAction,
+        setUrl: SetApiUrlAction
     }, dispatch);
 }
 
