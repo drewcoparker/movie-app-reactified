@@ -16,25 +16,31 @@ class Home extends Component {
         this.state = {
             nowPlaying: `${Constants.baseUrl}/movie/now_playing?${config.apiKey}&page=`,
             upComing: `${Constants.baseUrl}/movie/upcoming?${config.apiKey}&page=`,
-            search: `${Constants.baseUrl}/search/movie?${config.apiKey}&query=`
+            search: `${Constants.baseUrl}/search/movie?${config.apiKey}&query=`,
+            page: `&page=`,
+            displayMsg: ''
         }
         this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     }
 
     componentDidMount() {
         this.props.getMovies(this.state.nowPlaying);
+        this.setState({
+            displayMsg: 'Now playing'
+        })
     }
 
     componentWillReceiveProps(nextProps) {
-        if (this.props.page !== nextProps.page) {
-            this.props.getMovies(this.state.nowPlaying + nextProps.page)
+        if (this.props.fromSetPage !== nextProps.fromSetPage) {
+            this.props.getMovies(this.state.nowPlaying + nextProps.fromSetPage)
         }
     }
 
     handleSearchSubmit(event) {
         event.preventDefault();
-        var value = event.target[0].value;
-        var searchQuery = this.state.search + value;
+        let page = `&page=${this.props.fromSetPage}`;
+        let value = event.target[0].value;
+        let searchQuery = this.state.search + value + page;
         this.props.getMovies(searchQuery);
     }
 
@@ -57,6 +63,7 @@ class Home extends Component {
                     </Form>
                 </Navbar>
                 <div className='app-wrapper'>
+                    <h3 className="display-message">{this.state.displayMsg}</h3>
                     <div className="cards-wrapper">
                         {cards}
                     </div>
@@ -70,10 +77,11 @@ class Home extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state.movies);
+    console.log(state.apiResults);
     return {
-        movieData: state.movies,
-        page: state.page
+        movieData: state.apiResults.movies,
+        page: state.apiResults.page,
+        fromSetPage: state.page
     }
 }
 

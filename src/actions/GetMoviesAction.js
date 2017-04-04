@@ -3,10 +3,12 @@ import Constants from '../Constants';
 import config from '../config';
 
 export default function(endpoint, page=1) {
-    var apiResults = [];
+    var apiResults = {};
+    var movies = [];
     console.log(endpoint);
     var promise = $.getJSON(endpoint).then((movieData) => {
         console.log(movieData);
+        apiResults['page'] = movieData.page;
         return Promise.all(movieData.results.map((result) => {
             var movie = {};
             var id = result.id;
@@ -58,10 +60,11 @@ export default function(endpoint, page=1) {
                     }
                 }
                 // Push the object to our movie objects array (state)
-                return apiResults.push(movie);
+                return movies.push(movie);
             });
         }));
     }).then(() => {
+        apiResults['movies'] = movies;
         return apiResults
     }).catch((error) => {
         console.log(error);

@@ -34,7 +34,7 @@ class Paginator extends Component {
 
 function mapStateToProps(state) {
     return {
-        activePage: state.page
+        activePage: state.apiResults.page
     }
 }
 
