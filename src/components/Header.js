@@ -15,6 +15,7 @@ class Header extends Component {
     handleSearchSubmit(event) {
         event.preventDefault();
         var inputBox = event.target[0].value;
+        console.log(inputBox);
         this.props.functionFromParent(inputBox);
     }
 
@@ -34,6 +35,8 @@ class Header extends Component {
     }
 
 }
+
+
 
 export default Header;
 

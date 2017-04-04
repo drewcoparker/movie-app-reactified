@@ -1,6 +1,5 @@
 import React, {Component} from "react";
-import { Modal, Button } from 'react-bootstrap';
-
+import { Modal } from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import TrailerModalAction from '../actions/TrailerModalAction.js';
@@ -20,7 +19,7 @@ class TrailerModal extends Component{
     render() {
         return (
             <Modal show={this.props.shown.showModal} onHide={this.handleModalClose}>
-                <iframe width="600" height="355" src={this.props.trailer} frameborder="0"></iframe>
+                <iframe width="600" height="355" src={this.props.trailer} frameBorder="0"></iframe>
             </Modal>
         )
     }

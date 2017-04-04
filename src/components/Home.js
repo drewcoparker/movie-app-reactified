@@ -1,38 +1,45 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Navbar, FormGroup, FormControl, Button, Form} from 'react-bootstrap';
 import MovieCard from './MovieCard';
 import Paginator from './Paginator';
-// import DiscoverButton from './DiscoverButton';
+import Constants from '../Constants';
+import config from '../config';
 import GetMoviesAction from '../actions/GetMoviesAction.js';
 
 import '../../public/css/styles.css';
 
 class Home extends Component {
-    // constructor(props) {
-    //     super(props);
-    // }
+    constructor(props) {
+        super(props);
+        this.state = {
+            nowPlaying: `${Constants.baseUrl}/movie/now_playing?${config.apiKey}&page=`,
+            upComing: `${Constants.baseUrl}/movie/upcoming?${config.apiKey}&page=`,
+            search: `${Constants.baseUrl}/search/movie?${config.apiKey}&query=`
+        }
+        this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
+    }
 
     componentDidMount() {
-        this.props.getMovies(this.props.page);
+        this.props.getMovies(this.state.nowPlaying);
     }
 
     componentWillReceiveProps(nextProps) {
         if (this.props.page !== nextProps.page) {
-            this.props.getMovies(nextProps.page)
+            this.props.getMovies(this.state.nowPlaying + nextProps.page)
         }
     }
 
-    // handleCategoryChange(categoryApiUrl) {
-    //     var url = Constants.baseUrl + categoryApiUrl + config.apiKey;
-    //     $.getJSON(url, (categoryData) => {
-    //         this.setState({
-    //             movieObjects: categoryData.results
-    //         })
-    //     })
-    // }
+    handleSearchSubmit(event) {
+        event.preventDefault();
+        var value = event.target[0].value;
+        var searchQuery = this.state.search + value;
+        this.props.getMovies(searchQuery);
+    }
 
     render() {
+
         var cards = [];
         this.props.movieData.map((card, index) => {
             return cards.push(
@@ -41,11 +48,21 @@ class Home extends Component {
         });
         return(
             <div className='app-wrapper'>
-                <div className="cards-wrapper">
-                    {cards}
-                </div>
-                <div className="paginator">
-                    <Paginator />
+                <Navbar className="text-center">
+                    <Form inline onSubmit={this.handleSearchSubmit}>
+                        <FormGroup>
+                            <FormControl id='search-input' type="text" placeholder="Search" />
+                        </FormGroup>
+                        <Button id='search-btn' type="submit">Go</Button>
+                    </Form>
+                </Navbar>
+                <div className='app-wrapper'>
+                    <div className="cards-wrapper">
+                        {cards}
+                    </div>
+                    <div className="paginator">
+                        <Paginator />
+                    </div>
                 </div>
             </div>
         )
@@ -53,6 +70,7 @@ class Home extends Component {
 }
 
 function mapStateToProps(state) {
+    console.log(state.movies);
     return {
         movieData: state.movies,
         page: state.page

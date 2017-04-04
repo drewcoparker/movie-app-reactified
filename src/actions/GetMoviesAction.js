@@ -2,11 +2,11 @@ import $ from 'jquery';
 import Constants from '../Constants';
 import config from '../config';
 
-export default function(page) {
-
+export default function(endpoint, page=1) {
     var apiResults = [];
-    var url = `${Constants.baseUrl}/movie/now_playing?${config.apiKey}&page=${page}`;
-    var promise = $.getJSON(url).then((movieData) => {
+    console.log(endpoint);
+    var promise = $.getJSON(endpoint).then((movieData) => {
+        console.log(movieData);
         return Promise.all(movieData.results.map((result) => {
             var movie = {};
             var id = result.id;

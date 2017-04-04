@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import Header from './Header';
+import Home from './Home';
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
 import TrailerModal from './TrailerModal.js'
 
 // CSS
@@ -23,9 +22,8 @@ class App extends Component {
 
     render() {
         return (
-            <div className='app-wrapper'>
-                <Header functionFromParent={this.handleSearch}/>
-                {this.props.children}
+            <div>
+                <Home />
                 <TrailerModal shown={this.props.showModal} trailer={this.props.trailer}/>
             </div>
         );
