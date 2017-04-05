@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+// import { Link } from 'react-router';
 import { Button } from 'react-bootstrap';
 import Constants from '../Constants';
 import { bindActionCreators } from 'redux';
@@ -50,12 +50,13 @@ class MovieCard extends Component {
             imgPath = `${Constants.imageBase}${this.props.card.poster_path}`;
         }
         var posterLink = `/movie/${this.props.card.id}`;
+        var imdbLink = "http://www.imdb.com/title/" + this.props.card.imdb_id;
 
         return(
             <div className='card' id={this.props.card.id}>
-                <Link to={posterLink}>
+                <a target="_blank" href={imdbLink}>
                     <img src={imgPath} role="presentation"/>
-                </Link>
+                </a>
 
                 <div className='card-content'>
 
