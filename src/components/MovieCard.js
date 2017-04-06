@@ -49,7 +49,7 @@ class MovieCard extends Component {
         } else {
             imgPath = `${Constants.imageBase}${this.props.card.poster_path}`;
         }
-        var posterLink = `/movie/${this.props.card.id}`;
+        
         var imdbLink = "http://www.imdb.com/title/" + this.props.card.imdb_id;
 
         return(
