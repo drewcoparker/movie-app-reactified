@@ -21,6 +21,8 @@ class Home extends Component {
             displayMsg: ''
         }
         this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
+        this.handleNowPlaying = this.handleNowPlaying.bind(this);
+        this.handleUpcoming = this.handleUpcoming.bind(this);
     }
 
     componentDidMount() {
@@ -43,6 +45,21 @@ class Home extends Component {
         let searchQuery = this.state.search + value + page;
         this.props.setUrl(searchQuery);
         this.props.getMovies(searchQuery + "1");
+        this.setState({
+            displayMsg: `Search results for ${value}`
+        });
+    }
+
+    handleNowPlaying() {
+        let url = this.state.nowPlaying;
+        this.props.setUrl(url);
+        this.getMovies(url);
+    }
+
+    handleUpcoming() {
+        let url = this.state.upComing;
+        this.props.setUrl(url);
+        this.getMovies(url);
     }
 
     render() {
@@ -64,7 +81,7 @@ class Home extends Component {
                     </Form>
                 </Navbar>
                 <div className='app-wrapper'>
-                    <h3 className="display-message">{this.state.displayMsg}</h3>
+                    <div className="display-message">{this.state.displayMsg}</div>
                     <div className="cards-wrapper">
                         {cards}
                     </div>
