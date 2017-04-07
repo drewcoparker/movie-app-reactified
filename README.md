@@ -4,7 +4,7 @@ and quickly view their trailers. The trailers are presented in a modal, so it's
 quite easy to start one, dismiss it, and move on to the next.
 
 <!-- <img src="./images/card.png" style="width: 500px;"/> -->
-![Movie card](./images/card.png =500 "Example movie card")
+![Movie card](./images/card.png =500)
 
 ## Under the Hood
 Trailers gets its movie data from The Movie Database (tmdb.org) Api. Once queried,
