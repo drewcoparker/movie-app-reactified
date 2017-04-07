@@ -3,6 +3,7 @@ import { Modal } from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import TrailerModalAction from '../actions/TrailerModalAction.js';
+import GetTrailerAction from '../actions/GetTrailerAction.js';
 
 class TrailerModal extends Component{
     constructor(props) {
@@ -12,6 +13,7 @@ class TrailerModal extends Component{
 
     handleModalClose() {
         this.props.trailerModalAction(false);
+        this.props.setTrailer()
     }
 
     render() {
@@ -32,7 +34,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        trailerModalAction: TrailerModalAction
+        trailerModalAction: TrailerModalAction,
+        setTrailer: GetTrailerAction,
     }, dispatch);
 }
 

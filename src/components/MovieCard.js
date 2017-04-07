@@ -22,7 +22,9 @@ class MovieCard extends Component {
     handleTrailerBtnClick(e, id) {
         e.preventDefault();
         this.props.getTrailer(id)
-        this.props.showModal(true);
+            .then(() => {
+                this.props.showModal(true)
+            });
     }
 
 

@@ -63,7 +63,6 @@ class Home extends Component {
     }
 
     render() {
-
         var cards = [];
         this.props.movieData.map((card, index) => {
             return cards.push(
