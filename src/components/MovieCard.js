@@ -22,7 +22,7 @@ class MovieCard extends Component {
     handleTrailerBtnClick(e, id) {
         e.preventDefault();
         this.props.getTrailer(id)
-        this.props.showModal({showModal: true});
+        this.props.showModal(true);
     }
 
 
@@ -49,7 +49,7 @@ class MovieCard extends Component {
         } else {
             imgPath = `${Constants.imageBase}${this.props.card.poster_path}`;
         }
-        
+
         var imdbLink = "http://www.imdb.com/title/" + this.props.card.imdb_id;
 
         return(
@@ -93,11 +93,11 @@ class MovieCard extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        trailer: state.trailer
-    }
-}
+// function mapStateToProps(state) {
+//     return {
+//         trailer: state.trailer
+//     }
+// }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
@@ -106,4 +106,4 @@ function mapDispatchToProps(dispatch) {
     }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MovieCard);
+export default connect(null, mapDispatchToProps)(MovieCard);

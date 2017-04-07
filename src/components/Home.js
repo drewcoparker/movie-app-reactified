@@ -53,13 +53,13 @@ class Home extends Component {
     handleNowPlaying() {
         let url = this.state.nowPlaying;
         this.props.setUrl(url);
-        this.getMovies(url);
+        this.props.getMovies(url);
     }
 
     handleUpcoming() {
         let url = this.state.upComing;
         this.props.setUrl(url);
-        this.getMovies(url);
+        this.props.getMovies(url);
     }
 
     render() {
@@ -81,7 +81,10 @@ class Home extends Component {
                     </Form>
                 </Navbar>
                 <div className='app-wrapper'>
-                    <div className="display-message">{this.state.displayMsg}</div>
+                    <div className="playing-type">
+                        <div onClick={this.handleNowPlaying} className="now-playing">Now playing</div>
+                        <div onClick={this.handleUpcoming} className="upcoming">Upcoming</div>
+                    </div>
                     <div className="cards-wrapper">
                         {cards}
                     </div>

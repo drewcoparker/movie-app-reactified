@@ -11,17 +11,22 @@ class TrailerModal extends Component{
     }
 
     handleModalClose() {
-        this.props.trailerModalAction({
-            showModal: false
-        })
+        this.props.trailerModalAction(false);
     }
 
     render() {
         return (
-            <Modal show={this.props.shown.showModal} onHide={this.handleModalClose}>
+            <Modal show={this.props.showModal} onHide={this.handleModalClose}>
                 <iframe width="600" height="355" src={this.props.trailer} frameBorder="0"></iframe>
             </Modal>
         )
+    }
+}
+
+function mapStateToProps(state) {
+    return {
+        showModal: state.showModal,
+        trailer: state.trailer
     }
 }
 
@@ -31,4 +36,4 @@ function mapDispatchToProps(dispatch) {
     }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(TrailerModal);
+export default connect(mapStateToProps, mapDispatchToProps)(TrailerModal);
