@@ -3,7 +3,7 @@ Trailers is an app that lets movie lovers browse now playing and upcoming movies
 and quickly view their trailers. The trailers are presented in a modal, so it's
 quite easy to start one, dismiss it, and move on to the next.
 
-![Movie card](./images/card.png?raw=true "Example movie card")
+![Movie card](./images/card.png | width=500 "Example movie card")
 
 ## Under the Hood
 Trailers gets its movie data from The Movie Database (tmdb.org) Api. Once queried,
