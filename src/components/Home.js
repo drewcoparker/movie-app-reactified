@@ -63,11 +63,9 @@ class Home extends Component {
     }
 
     render() {
-        var cards = [];
-        this.props.movieData.map((card, index) => {
-            return cards.push(
-                <MovieCard card={card} key={index} />
-            );
+        // var cards = [];
+        const cards = this.props.movieData.map((card, index) => {
+            return <MovieCard card={card} key={index} />
         });
         return(
             <div className='app-wrapper'>
