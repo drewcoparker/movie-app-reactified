@@ -63,7 +63,6 @@ class Home extends Component {
     }
 
     render() {
-        // var cards = [];
         const cards = this.props.movieData.map((card, index) => {
             return <MovieCard card={card} key={index} />
         });
@@ -95,7 +94,6 @@ class Home extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state);
     return {
         url: state.apiUrl,
         movieData: state.apiResults.movies,
